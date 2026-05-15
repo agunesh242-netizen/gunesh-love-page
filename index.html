@@ -18,30 +18,29 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#220022,#4b004f,#140014);
-min-height:100vh;
-overflow-x:hidden;
+height:100vh;
+overflow:hidden;
 display:flex;
 justify-content:center;
 align-items:center;
-padding:20px;
+background:linear-gradient(135deg,#170018,#3d003d,#120012);
 position:relative;
+color:white;
 }
 
 /* Background Glow */
 
 .bg{
-position:fixed;
+position:absolute;
 width:700px;
 height:700px;
-background:rgba(255,0,128,0.2);
+background:rgba(255,0,150,0.25);
 border-radius:50%;
 filter:blur(120px);
-animation:bgMove 10s infinite alternate;
-z-index:0;
+animation:movebg 8s infinite alternate;
 }
 
-@keyframes bgMove{
+@keyframes movebg{
 0%{
 transform:translate(-100px,-50px);
 }
@@ -50,189 +49,130 @@ transform:translate(100px,50px);
 }
 }
 
-/* Main Card */
+/* Main Book */
 
-.card{
+.book{
+width:390px;
+height:730px;
 position:relative;
-width:100%;
-max-width:400px;
-padding:20px;
-border-radius:35px;
-background:rgba(255,255,255,0.12);
-backdrop-filter:blur(20px);
-box-shadow:0 0 40px rgba(255,0,128,0.4);
-text-align:center;
-z-index:10;
 overflow:hidden;
+border-radius:35px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(18px);
+box-shadow:0 0 40px rgba(255,0,120,0.4);
+z-index:10;
 }
 
-/* Image */
+/* Pages */
 
-.photo-box{
+.page{
+position:absolute;
 width:100%;
+height:100%;
+padding:18px;
+display:none;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+animation:fade 1s;
+}
+
+.page.active{
+display:flex;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateX(40px);
+}
+to{
+opacity:1;
+transform:translateX(0);
+}
+}
+
+/* Images */
+
+.page img{
+width:100%;
+height:430px;
+object-fit:cover;
 border-radius:25px;
-overflow:hidden;
 border:4px solid white;
 box-shadow:0 0 30px pink;
-background:black;
 }
 
-.photo-box img{
-width:100%;
-display:block;
-border-radius:20px;
-}
+/* Titles */
 
-/* Title */
-
-.love-title{
-margin-top:20px;
-font-size:52px;
+.title{
+margin-top:18px;
+font-size:45px;
 font-family:'Dancing Script',cursive;
-font-weight:bold;
-color:white;
 text-shadow:
 0 0 10px #fff,
 0 0 20px #ff4da6,
 0 0 40px #ff0080;
-animation:glow 2s infinite alternate;
 }
 
-.love-title span{
+.title span{
 display:inline-block;
-animation:heartbeat 1s infinite;
+animation:heart 1s infinite;
 }
 
-@keyframes heartbeat{
-0%{
-transform:scale(1);
-}
-25%{
-transform:scale(1.3);
-}
-50%{
-transform:scale(1);
-}
-75%{
-transform:scale(1.3);
-}
-100%{
-transform:scale(1);
-}
+@keyframes heart{
+0%{transform:scale(1);}
+25%{transform:scale(1.25);}
+50%{transform:scale(1);}
+75%{transform:scale(1.25);}
+100%{transform:scale(1);}
 }
 
-@keyframes glow{
-from{
-filter:drop-shadow(0 0 5px #ff4da6);
-}
-to{
-filter:drop-shadow(0 0 20px #ff99cc);
-}
-}
+/* Message */
 
-/* Typing Text */
-
-.typing{
-margin-top:20px;
-font-size:20px;
+.message{
+margin-top:15px;
+font-size:18px;
 line-height:1.8;
-color:white;
-min-height:140px;
 padding:10px;
 }
 
-/* Music Player */
+/* Buttons */
 
-.music-box{
-margin-top:15px;
-}
-
-.music-box audio{
+.buttons{
+position:absolute;
+bottom:20px;
 width:100%;
-border-radius:20px;
+display:flex;
+justify-content:space-between;
+padding:0 20px;
 }
 
-/* Button */
-
-.gift-btn{
-margin-top:22px;
-padding:16px 32px;
+button{
+padding:12px 22px;
 border:none;
 border-radius:50px;
 background:linear-gradient(45deg,#ff0080,#ff4da6);
 color:white;
-font-size:22px;
+font-size:16px;
 font-weight:bold;
 cursor:pointer;
-box-shadow:0 0 30px rgba(255,0,128,0.7);
+box-shadow:0 0 20px rgba(255,0,128,0.5);
 transition:0.4s;
 }
 
-.gift-btn:hover{
+button:hover{
 transform:scale(1.08);
-}
-
-/* Popup */
-
-.popup{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%) scale(0);
-background:rgba(20,0,20,0.95);
-padding:35px;
-border-radius:30px;
-text-align:center;
-width:320px;
-transition:0.5s;
-z-index:100;
-box-shadow:0 0 60px rgba(255,0,128,0.5);
-}
-
-.popup.active{
-transform:translate(-50%,-50%) scale(1);
-}
-
-.popup h2{
-font-size:42px;
-font-family:'Dancing Script',cursive;
-color:#ff4da6;
-margin-bottom:15px;
-}
-
-.popup p{
-font-size:18px;
-line-height:1.8;
-color:white;
-}
-
-/* Ring */
-
-.ring{
-font-size:70px;
-animation:ringGlow 1.5s infinite alternate;
-}
-
-@keyframes ringGlow{
-from{
-transform:scale(1);
-filter:drop-shadow(0 0 10px gold);
-}
-to{
-transform:scale(1.1);
-filter:drop-shadow(0 0 25px gold);
-}
 }
 
 /* Floating Hearts */
 
 .heart{
-position:fixed;
+position:absolute;
 bottom:-50px;
-color:#ff006e;
 animation:float linear infinite;
 opacity:0.8;
-z-index:1;
 }
 
 @keyframes float{
@@ -252,10 +192,9 @@ opacity:0;
 /* Flower Rain */
 
 .flower{
-position:fixed;
+position:absolute;
 top:-50px;
 animation:fall linear infinite;
-z-index:1;
 }
 
 @keyframes fall{
@@ -270,13 +209,12 @@ transform:translateY(110vh) rotate(360deg);
 /* Fireworks */
 
 .firework{
-position:fixed;
+position:absolute;
 width:10px;
 height:10px;
 border-radius:50%;
 animation:explode 1s ease-out infinite;
 opacity:0;
-z-index:99;
 }
 
 @keyframes explode{
@@ -293,12 +231,11 @@ opacity:0;
 /* Angel */
 
 .angel{
-position:fixed;
-top:20px;
+position:absolute;
+top:15px;
 right:20px;
-font-size:75px;
-animation:fly 4s ease-in-out infinite;
-z-index:5;
+font-size:65px;
+animation:fly 4s infinite ease-in-out;
 }
 
 @keyframes fly{
@@ -307,30 +244,6 @@ transform:translateY(0);
 }
 50%{
 transform:translateY(-20px);
-}
-}
-
-/* Sparkle Cursor */
-
-.sparkle{
-position:fixed;
-width:10px;
-height:10px;
-border-radius:50%;
-background:white;
-pointer-events:none;
-animation:spark 1s linear forwards;
-z-index:999;
-}
-
-@keyframes spark{
-0%{
-transform:scale(1);
-opacity:1;
-}
-100%{
-transform:scale(0);
-opacity:0;
 }
 }
 
@@ -343,117 +256,156 @@ opacity:0;
 
 <div class="angel">👼</div>
 
-<div class="card">
+<div class="book">
 
-<!-- IMAGE -->
+<!-- PAGE 1 -->
 
-<div class="photo-box">
-<img src="IMG_1763.jpeg" alt="Love Photo">
-</div>
+<div class="page active">
 
-<!-- TITLE -->
+<img src="d2f6d002-8ccf-48d8-a882-192618f10d14.jpeg">
 
-<h1 class="love-title">
-Gunesh <span>❤️</span> Pooja
+<h1 class="title">
+First <span>❤️</span> Meeting
 </h1>
 
-<!-- TYPING TEXT -->
-
-<div class="typing" id="typing"></div>
-
-<!-- MUSIC -->
-
-<div class="music-box">
-
-<audio id="bgMusic" controls loop>
-<source src="music.mp3" type="audio/mp3">
-</audio>
+<div class="message">
+🌸 The day our eyes met,<br>
+my heart found its forever 💖
+</div>
 
 </div>
 
-<!-- BUTTON -->
+<!-- PAGE 2 -->
 
-<button class="gift-btn" onclick="openGift()">
-💍 Open Forever Love
+<div class="page">
+
+<img src="IMG_7345.jpeg">
+
+<h1 class="title">
+Wedding <span>💍</span> Day
+</h1>
+
+<div class="message">
+✨ Two souls,<br>
+one promise,<br>
+one beautiful forever ❤️
+</div>
+
+</div>
+
+<!-- PAGE 3 -->
+
+<div class="page">
+
+<img src="IMG_0504.jpeg">
+
+<h1 class="title">
+Honeymoon <span>🌹</span>
+</h1>
+
+<div class="message">
+💞 Every journey becomes magical<br>
+when I’m with you ✨
+</div>
+
+</div>
+
+<!-- PAGE 4 -->
+
+<div class="page">
+
+<img src="IMG_0392.jpeg">
+
+<h1 class="title">
+Forever <span>❤️</span> Together
+</h1>
+
+<div class="message">
+💖 No matter where life takes us,<br>
+my heart will always belong to you 🌸
+</div>
+
+</div>
+
+<!-- Buttons -->
+
+<div class="buttons">
+
+<button onclick="prevPage(); playMusic();">
+⬅ Prev
+</button>
+
+<button onclick="nextPage(); playMusic();">
+Next ➡
 </button>
 
 </div>
 
-<!-- POPUP -->
-
-<div class="popup" id="popup">
-
-<div class="ring">💍</div>
-
-<h2>Forever Together</h2>
-
-<p>
-🌹 You are my destiny 🌹<br><br>
-
-❤️ Every heartbeat of mine belongs only to you ❤️<br><br>
-
-✨ Will you stay with me forever? ✨
-</p>
-
 </div>
+
+<!-- MUSIC -->
+
+<audio id="bgMusic" loop>
+<source src="music.mp3" type="audio/mp3">
+</audio>
 
 <script>
 
-/* Music Start */
+/* MUSIC */
 
-window.onload = function(){
+function playMusic(){
 
-const music = document.getElementById("bgMusic");
-
-document.body.addEventListener("click", () => {
+let music=document.getElementById("bgMusic");
 
 music.play().catch(()=>{});
 
-}, { once:true });
-
 }
 
-/* Typing Effect */
+document.body.addEventListener("click",playMusic,{once:true});
 
-const text = `
-🌸 Every heartbeat whispers your name 💖
+/* Pages */
 
-✨ You are my sweetest forever dream ✨
+let pages=document.querySelectorAll(".page");
 
-❤️ My happiness begins with you ❤️
-`;
+let current=0;
 
-let i = 0;
+function showPage(index){
 
-function typingEffect(){
+pages.forEach(page=>page.classList.remove("active"));
 
-if(i < text.length){
-
-document.getElementById("typing").innerHTML += text.charAt(i);
-
-i++;
-
-setTimeout(typingEffect,50);
-
-}
-
-}
-
-typingEffect();
-
-/* Popup */
-
-function openGift(){
-
-document.getElementById("popup").classList.add("active");
+pages[index].classList.add("active");
 
 createFireworks();
 
 }
 
+function nextPage(){
+
+current++;
+
+if(current>=pages.length){
+current=0;
+}
+
+showPage(current);
+
+}
+
+function prevPage(){
+
+current--;
+
+if(current<0){
+current=pages.length-1;
+}
+
+showPage(current);
+
+}
+
 /* Hearts */
 
-for(let i=0;i<35;i++){
+for(let i=0;i<40;i++){
 
 let heart=document.createElement("div");
 
@@ -473,9 +425,9 @@ document.body.appendChild(heart);
 
 /* Flowers */
 
-let flowers=["🌸","🌺","🌷","💮","🌹"];
+let flowers=["🌸","🌺","🌷","🌹","💮"];
 
-for(let i=0;i<70;i++){
+for(let i=0;i<60;i++){
 
 let flower=document.createElement("div");
 
@@ -485,7 +437,7 @@ flower.innerHTML=flowers[Math.floor(Math.random()*flowers.length)];
 
 flower.style.left=Math.random()*100+"vw";
 
-flower.style.fontSize=(20+Math.random()*20)+"px";
+flower.style.fontSize=(18+Math.random()*20)+"px";
 
 flower.style.animationDuration=(5+Math.random()*10)+"s";
 
@@ -497,7 +449,7 @@ document.body.appendChild(flower);
 
 function createFireworks(){
 
-for(let i=0;i<50;i++){
+for(let i=0;i<30;i++){
 
 let firework=document.createElement("div");
 
@@ -519,26 +471,6 @@ firework.remove();
 }
 
 }
-
-/* Sparkle */
-
-document.addEventListener("mousemove",function(e){
-
-let sparkle=document.createElement("div");
-
-sparkle.classList.add("sparkle");
-
-sparkle.style.left=e.pageX+"px";
-
-sparkle.style.top=e.pageY+"px";
-
-document.body.appendChild(sparkle);
-
-setTimeout(()=>{
-sparkle.remove();
-},1000);
-
-});
 
 </script>
 
