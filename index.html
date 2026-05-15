@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Gunesh ❤️ Pooja</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -14,6 +15,7 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Poppins',sans-serif;
+cursor:none;
 }
 
 body{
@@ -22,8 +24,31 @@ overflow:hidden;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#ff9ad5,#c77dff,#ffc8dd);
+background:linear-gradient(135deg,#140014,#2d0036,#4b004f);
 position:relative;
+}
+
+/* Sparkle Cursor */
+
+.sparkle{
+position:absolute;
+width:10px;
+height:10px;
+border-radius:50%;
+background:white;
+pointer-events:none;
+animation:spark 1s linear forwards;
+}
+
+@keyframes spark{
+0%{
+transform:scale(1);
+opacity:1;
+}
+100%{
+transform:scale(0);
+opacity:0;
+}
 }
 
 /* Background Glow */
@@ -32,7 +57,7 @@ position:relative;
 position:absolute;
 width:700px;
 height:700px;
-background:rgba(255,255,255,0.15);
+background:rgba(255,0,128,0.2);
 border-radius:50%;
 filter:blur(100px);
 animation:bgMove 10s infinite alternate;
@@ -51,58 +76,86 @@ transform:translate(100px,50px);
 
 .card{
 position:relative;
-width:370px;
+width:380px;
 padding:20px;
-border-radius:30px;
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(15px);
-box-shadow:0 0 40px rgba(255,255,255,0.3);
+border-radius:35px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(20px);
+box-shadow:0 0 40px rgba(255,0,128,0.4);
 text-align:center;
 z-index:10;
-animation:cardOpen 2s ease;
+overflow:hidden;
 }
 
-@keyframes cardOpen{
-from{
-opacity:0;
-transform:scale(0.5) rotateY(90deg);
-}
-to{
-opacity:1;
-transform:scale(1) rotateY(0deg);
-}
-}
+/* Slideshow */
 
-/* Image */
-
-.card img{
+.slideshow{
+position:relative;
 width:100%;
+height:500px;
+overflow:hidden;
 border-radius:25px;
 border:4px solid white;
 box-shadow:0 0 30px pink;
 }
 
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+animation:slideShow 12s infinite;
+}
+
+.slide:nth-child(1){
+animation-delay:0s;
+}
+
+.slide:nth-child(2){
+animation-delay:4s;
+}
+
+.slide:nth-child(3){
+animation-delay:8s;
+}
+
+@keyframes slideShow{
+0%{
+opacity:0;
+}
+10%{
+opacity:1;
+}
+30%{
+opacity:1;
+}
+40%{
+opacity:0;
+}
+100%{
+opacity:0;
+}
+}
+
 /* Stylish Name */
 
 .love-title{
-margin-top:18px;
-font-size:42px;
+margin-top:20px;
+font-size:50px;
 font-family:'Dancing Script',cursive;
 font-weight:bold;
-background:linear-gradient(45deg,#fff,#ffe0f0,#ff4da6);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+color:white;
 text-shadow:
-0 0 10px rgba(255,255,255,0.8),
-0 0 20px rgba(255,0,128,0.7),
-0 0 40px rgba(255,0,128,0.5);
+0 0 10px #fff,
+0 0 20px #ff4da6,
+0 0 40px #ff0080;
 animation:glow 2s infinite alternate;
 }
 
 .love-title span{
 display:inline-block;
 animation:heartbeat 1s infinite;
-font-size:45px;
 }
 
 @keyframes heartbeat{
@@ -132,28 +185,29 @@ filter:drop-shadow(0 0 20px #ff99cc);
 }
 }
 
-/* Romantic Message */
+/* Typing Love Letter */
 
-.message{
-margin-top:15px;
-font-size:17px;
+.typing{
+margin-top:18px;
+font-size:18px;
 color:white;
 line-height:1.8;
-text-shadow:0 0 10px rgba(0,0,0,0.3);
+min-height:120px;
+padding:10px;
 }
 
 /* Gift Button */
 
 .gift-btn{
 margin-top:20px;
-padding:14px 28px;
+padding:15px 30px;
 border:none;
 border-radius:50px;
 background:linear-gradient(45deg,#ff0080,#ff4da6);
 color:white;
-font-size:18px;
+font-size:20px;
 cursor:pointer;
-box-shadow:0 0 25px rgba(255,0,128,0.6);
+box-shadow:0 0 30px rgba(255,0,128,0.6);
 transition:0.4s;
 }
 
@@ -168,15 +222,14 @@ position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%) scale(0);
-background:rgba(255,255,255,0.95);
-padding:30px;
+background:rgba(20,0,20,0.95);
+padding:35px;
 border-radius:30px;
 text-align:center;
-width:320px;
+width:330px;
 transition:0.5s;
 z-index:100;
-box-shadow:0 0 50px rgba(255,0,128,0.4);
-backdrop-filter:blur(10px);
+box-shadow:0 0 60px rgba(255,0,128,0.5);
 }
 
 .popup.active{
@@ -184,18 +237,34 @@ transform:translate(-50%,-50%) scale(1);
 }
 
 .popup h2{
-font-size:38px;
+font-size:42px;
 font-family:'Dancing Script',cursive;
-color:#ff0080;
+color:#ff4da6;
 margin-bottom:15px;
-text-shadow:0 0 10px rgba(255,0,128,0.4);
 }
 
 .popup p{
 font-size:18px;
-line-height:1.9;
-color:#444;
-font-weight:500;
+line-height:1.8;
+color:white;
+}
+
+/* Proposal Ring */
+
+.ring{
+font-size:70px;
+animation:ringGlow 1.5s infinite alternate;
+}
+
+@keyframes ringGlow{
+from{
+transform:scale(1);
+filter:drop-shadow(0 0 10px gold);
+}
+to{
+transform:scale(1.1);
+filter:drop-shadow(0 0 25px gold);
+}
 }
 
 /* Floating Hearts */
@@ -267,7 +336,7 @@ opacity:0;
 position:absolute;
 top:20px;
 right:20px;
-font-size:75px;
+font-size:80px;
 animation:fly 4s ease-in-out infinite;
 }
 
@@ -291,24 +360,30 @@ transform:translateY(-20px);
 
 <div class="card">
 
-<!-- IMAGE -->
-<img src="IMG_1763.jpeg" alt="Love Image">
+<!-- SLIDESHOW -->
 
-<!-- NAME -->
+<div class="slideshow">
+
+<img src="IMG_1763.jpeg" class="slide">
+<img src="IMG_1763.jpeg" class="slide">
+<img src="IMG_1763.jpeg" class="slide">
+
+</div>
+
+<!-- TITLE -->
+
 <h1 class="love-title">
 Gunesh <span>❤️</span> Pooja
 </h1>
 
-<!-- MESSAGE -->
-<div class="message">
-🌸 Every heartbeat whispers your name 💖<br>
-✨ You are my sweetest forever dream ✨<br>
-❤️ My happiness begins with you ❤️
-</div>
+<!-- TYPING MESSAGE -->
+
+<div class="typing" id="typing"></div>
 
 <!-- BUTTON -->
+
 <button class="gift-btn" onclick="openGift()">
-🎁 Open Love Gift
+💍 Open Forever Love
 </button>
 
 </div>
@@ -317,17 +392,17 @@ Gunesh <span>❤️</span> Pooja
 
 <div class="popup" id="popup">
 
-<h2>💌 Forever & Always 💌</h2>
+<div class="ring">💍</div>
+
+<h2>Forever Together</h2>
 
 <p>
-🌹 In your smile, I found my peace 🌹<br><br>
+🌹 You are my destiny 🌹<br><br>
 
-💖 No matter how many years pass,<br>
-my heart will always beat only for you ❤️<br><br>
+❤️ Every heartbeat of mine<br>
+belongs only to you ❤️<br><br>
 
-✨ You are my today,<br>
-my tomorrow,<br>
-and my forever ✨
+✨ Will you stay with me forever? ✨
 </p>
 
 </div>
@@ -339,6 +414,34 @@ and my forever ✨
 </audio>
 
 <script>
+
+/* Typing Effect */
+
+const text = `
+🌸 Every heartbeat whispers your name 💖
+
+✨ You are my sweetest forever dream ✨
+
+❤️ My happiness begins with you ❤️
+`;
+
+let i = 0;
+
+function typingEffect(){
+
+if(i < text.length){
+
+document.getElementById("typing").innerHTML += text.charAt(i);
+
+i++;
+
+setTimeout(typingEffect,50);
+
+}
+
+}
+
+typingEffect();
 
 /* Popup */
 
@@ -352,7 +455,7 @@ createFireworks();
 
 /* Hearts */
 
-for(let i=0;i<30;i++){
+for(let i=0;i<35;i++){
 
 let heart=document.createElement("div");
 
@@ -374,7 +477,7 @@ document.body.appendChild(heart);
 
 let flowers=["🌸","🌺","🌷","💮","🌹"];
 
-for(let i=0;i<60;i++){
+for(let i=0;i<70;i++){
 
 let flower=document.createElement("div");
 
@@ -396,7 +499,7 @@ document.body.appendChild(flower);
 
 function createFireworks(){
 
-for(let i=0;i<40;i++){
+for(let i=0;i<50;i++){
 
 let firework=document.createElement("div");
 
@@ -421,6 +524,26 @@ firework.remove();
 }
 
 }
+
+/* Sparkle Cursor */
+
+document.addEventListener("mousemove",function(e){
+
+let sparkle=document.createElement("div");
+
+sparkle.classList.add("sparkle");
+
+sparkle.style.left=e.pageX+"px";
+
+sparkle.style.top=e.pageY+"px";
+
+document.body.appendChild(sparkle);
+
+setTimeout(()=>{
+sparkle.remove();
+},1000);
+
+});
 
 </script>
 
