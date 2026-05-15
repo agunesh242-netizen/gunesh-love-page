@@ -15,52 +15,30 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Poppins',sans-serif;
-cursor:none;
 }
 
 body{
-height:100vh;
-overflow:hidden;
+background:linear-gradient(135deg,#220022,#4b004f,#140014);
+min-height:100vh;
+overflow-x:hidden;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#140014,#2d0036,#4b004f);
+padding:20px;
 position:relative;
-}
-
-/* Sparkle Cursor */
-
-.sparkle{
-position:absolute;
-width:10px;
-height:10px;
-border-radius:50%;
-background:white;
-pointer-events:none;
-animation:spark 1s linear forwards;
-}
-
-@keyframes spark{
-0%{
-transform:scale(1);
-opacity:1;
-}
-100%{
-transform:scale(0);
-opacity:0;
-}
 }
 
 /* Background Glow */
 
 .bg{
-position:absolute;
+position:fixed;
 width:700px;
 height:700px;
 background:rgba(255,0,128,0.2);
 border-radius:50%;
-filter:blur(100px);
+filter:blur(120px);
 animation:bgMove 10s infinite alternate;
+z-index:0;
 }
 
 @keyframes bgMove{
@@ -76,10 +54,11 @@ transform:translate(100px,50px);
 
 .card{
 position:relative;
-width:380px;
+width:100%;
+max-width:400px;
 padding:20px;
 border-radius:35px;
-background:rgba(255,255,255,0.1);
+background:rgba(255,255,255,0.12);
 backdrop-filter:blur(20px);
 box-shadow:0 0 40px rgba(255,0,128,0.4);
 text-align:center;
@@ -87,64 +66,28 @@ z-index:10;
 overflow:hidden;
 }
 
-/* Slideshow */
+/* Image */
 
-.slideshow{
-position:relative;
+.photo-box{
 width:100%;
-height:500px;
-overflow:hidden;
 border-radius:25px;
+overflow:hidden;
 border:4px solid white;
 box-shadow:0 0 30px pink;
 background:black;
 }
 
-.slide{
-position:absolute;
+.photo-box img{
 width:100%;
-height:100%;
-object-fit:contain;
-background:black;
-opacity:0;
-animation:slideShow 12s infinite;
+display:block;
+border-radius:20px;
 }
 
-.slide:nth-child(1){
-animation-delay:0s;
-}
-
-.slide:nth-child(2){
-animation-delay:4s;
-}
-
-.slide:nth-child(3){
-animation-delay:8s;
-}
-
-@keyframes slideShow{
-0%{
-opacity:0;
-}
-10%{
-opacity:1;
-}
-30%{
-opacity:1;
-}
-40%{
-opacity:0;
-}
-100%{
-opacity:0;
-}
-}
-
-/* Stylish Name */
+/* Title */
 
 .love-title{
 margin-top:20px;
-font-size:50px;
+font-size:52px;
 font-family:'Dancing Script',cursive;
 font-weight:bold;
 color:white;
@@ -187,40 +130,52 @@ filter:drop-shadow(0 0 20px #ff99cc);
 }
 }
 
-/* Typing Message */
+/* Typing Text */
 
 .typing{
-margin-top:18px;
-font-size:18px;
-color:white;
+margin-top:20px;
+font-size:20px;
 line-height:1.8;
-min-height:120px;
+color:white;
+min-height:140px;
 padding:10px;
+}
+
+/* Music Player */
+
+.music-box{
+margin-top:15px;
+}
+
+.music-box audio{
+width:100%;
+border-radius:20px;
 }
 
 /* Button */
 
 .gift-btn{
-margin-top:20px;
-padding:15px 30px;
+margin-top:22px;
+padding:16px 32px;
 border:none;
 border-radius:50px;
 background:linear-gradient(45deg,#ff0080,#ff4da6);
 color:white;
-font-size:20px;
+font-size:22px;
+font-weight:bold;
 cursor:pointer;
-box-shadow:0 0 30px rgba(255,0,128,0.6);
+box-shadow:0 0 30px rgba(255,0,128,0.7);
 transition:0.4s;
 }
 
 .gift-btn:hover{
-transform:scale(1.1);
+transform:scale(1.08);
 }
 
 /* Popup */
 
 .popup{
-position:absolute;
+position:fixed;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%) scale(0);
@@ -228,7 +183,7 @@ background:rgba(20,0,20,0.95);
 padding:35px;
 border-radius:30px;
 text-align:center;
-width:330px;
+width:320px;
 transition:0.5s;
 z-index:100;
 box-shadow:0 0 60px rgba(255,0,128,0.5);
@@ -251,7 +206,7 @@ line-height:1.8;
 color:white;
 }
 
-/* Proposal Ring */
+/* Ring */
 
 .ring{
 font-size:70px;
@@ -272,11 +227,12 @@ filter:drop-shadow(0 0 25px gold);
 /* Floating Hearts */
 
 .heart{
-position:absolute;
+position:fixed;
 bottom:-50px;
 color:#ff006e;
 animation:float linear infinite;
 opacity:0.8;
+z-index:1;
 }
 
 @keyframes float{
@@ -296,9 +252,10 @@ opacity:0;
 /* Flower Rain */
 
 .flower{
-position:absolute;
+position:fixed;
 top:-50px;
 animation:fall linear infinite;
+z-index:1;
 }
 
 @keyframes fall{
@@ -313,12 +270,13 @@ transform:translateY(110vh) rotate(360deg);
 /* Fireworks */
 
 .firework{
-position:absolute;
+position:fixed;
 width:10px;
 height:10px;
 border-radius:50%;
 animation:explode 1s ease-out infinite;
 opacity:0;
+z-index:99;
 }
 
 @keyframes explode{
@@ -335,11 +293,12 @@ opacity:0;
 /* Angel */
 
 .angel{
-position:absolute;
+position:fixed;
 top:20px;
 right:20px;
-font-size:80px;
+font-size:75px;
 animation:fly 4s ease-in-out infinite;
+z-index:5;
 }
 
 @keyframes fly{
@@ -348,6 +307,30 @@ transform:translateY(0);
 }
 50%{
 transform:translateY(-20px);
+}
+}
+
+/* Sparkle Cursor */
+
+.sparkle{
+position:fixed;
+width:10px;
+height:10px;
+border-radius:50%;
+background:white;
+pointer-events:none;
+animation:spark 1s linear forwards;
+z-index:999;
+}
+
+@keyframes spark{
+0%{
+transform:scale(1);
+opacity:1;
+}
+100%{
+transform:scale(0);
+opacity:0;
 }
 }
 
@@ -362,14 +345,10 @@ transform:translateY(-20px);
 
 <div class="card">
 
-<!-- PHOTO SLIDESHOW -->
+<!-- IMAGE -->
 
-<div class="slideshow">
-
-<img src="IMG_1763.jpeg" class="slide">
-<img src="IMG_1763.jpeg" class="slide">
-<img src="IMG_1763.jpeg" class="slide">
-
+<div class="photo-box">
+<img src="IMG_1763.jpeg" alt="Love Photo">
 </div>
 
 <!-- TITLE -->
@@ -378,9 +357,19 @@ transform:translateY(-20px);
 Gunesh <span>❤️</span> Pooja
 </h1>
 
-<!-- TYPING MESSAGE -->
+<!-- TYPING TEXT -->
 
 <div class="typing" id="typing"></div>
+
+<!-- MUSIC -->
+
+<div class="music-box">
+
+<audio id="bgMusic" controls loop>
+<source src="music.mp3" type="audio/mp3">
+</audio>
+
+</div>
 
 <!-- BUTTON -->
 
@@ -401,31 +390,28 @@ Gunesh <span>❤️</span> Pooja
 <p>
 🌹 You are my destiny 🌹<br><br>
 
-❤️ Every heartbeat of mine<br>
-belongs only to you ❤️<br><br>
+❤️ Every heartbeat of mine belongs only to you ❤️<br><br>
 
 ✨ Will you stay with me forever? ✨
 </p>
 
 </div>
 
-<!-- MUSIC -->
-
-<audio id="bgMusic" loop>
-<source src="music.mp3" type="audio/mp3">
-</audio>
-
 <script>
 
-/* Start Music on First Tap */
+/* Music Start */
 
-document.body.addEventListener("click", function () {
+window.onload = function(){
 
 const music = document.getElementById("bgMusic");
 
-music.play();
+document.body.addEventListener("click", () => {
+
+music.play().catch(()=>{});
 
 }, { once:true });
+
+}
 
 /* Typing Effect */
 
@@ -473,7 +459,7 @@ let heart=document.createElement("div");
 
 heart.classList.add("heart");
 
-heart.innerHTML="❤";
+heart.innerHTML="❤️";
 
 heart.style.left=Math.random()*100+"vw";
 
@@ -485,7 +471,7 @@ document.body.appendChild(heart);
 
 }
 
-/* Flower Rain */
+/* Flowers */
 
 let flowers=["🌸","🌺","🌷","💮","🌹"];
 
@@ -524,9 +510,6 @@ firework.style.top=Math.random()*100+"vh";
 firework.style.background=
 `hsl(${Math.random()*360},100%,70%)`;
 
-firework.style.animationDelay=
-Math.random()*1+"s";
-
 document.body.appendChild(firework);
 
 setTimeout(()=>{
@@ -537,7 +520,7 @@ firework.remove();
 
 }
 
-/* Sparkle Cursor */
+/* Sparkle */
 
 document.addEventListener("mousemove",function(e){
 
