@@ -1,10 +1,57 @@
-/* 3D BOOK EFFECT */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-body{
-perspective:2500px;
+<title>Gunesh ❤️ Pooja</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
 }
 
-/* MAIN BOOK */
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:
+linear-gradient(135deg,#240024,#520052,#120012);
+perspective:2500px;
+position:relative;
+}
+
+/* Romantic Background */
+
+body::before{
+content:"";
+position:absolute;
+width:700px;
+height:700px;
+background:rgba(255,0,128,0.2);
+border-radius:50%;
+filter:blur(120px);
+animation:bgMove 8s infinite alternate;
+}
+
+@keyframes bgMove{
+0%{
+transform:translate(-120px,-60px);
+}
+100%{
+transform:translate(120px,60px);
+}
+}
+
+/* BOOK */
 
 .book{
 position:relative;
@@ -15,7 +62,7 @@ transition:1s;
 animation:bookFloat 5s ease-in-out infinite;
 }
 
-/* FLOATING BOOK */
+/* FLOAT */
 
 @keyframes bookFloat{
 0%,100%{
@@ -23,6 +70,82 @@ transform:rotateY(-8deg) translateY(0px);
 }
 50%{
 transform:rotateY(8deg) translateY(-10px);
+}
+}
+
+/* BOOK EDGE */
+
+.book::before{
+content:"";
+position:absolute;
+left:-8px;
+top:0;
+width:12px;
+height:100%;
+background:
+linear-gradient(
+to bottom,
+#ff99cc,
+#ff0080,
+#7b2cbf
+);
+border-radius:20px;
+box-shadow:0 0 25px #ff4da6;
+}
+
+/* BOOK SHADOW */
+
+.book::after{
+content:"";
+position:absolute;
+bottom:-30px;
+left:10%;
+width:80%;
+height:40px;
+background:rgba(0,0,0,0.4);
+filter:blur(25px);
+border-radius:50%;
+z-index:-1;
+}
+
+/* PAGES */
+
+.page{
+position:absolute;
+width:100%;
+height:100%;
+padding:20px;
+display:none;
+flex-direction:column;
+align-items:center;
+text-align:center;
+border-radius:25px;
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(15px);
+box-shadow:0 0 30px rgba(255,255,255,0.15);
+transform-origin:left center;
+transform-style:preserve-3d;
+transition:1s;
+overflow:hidden;
+}
+
+.page.active{
+display:flex;
+animation:flipPage 1s ease;
+}
+
+@keyframes flipPage{
+0%{
+transform:
+rotateY(-90deg)
+translateX(-30px);
+opacity:0;
+}
+100%{
+transform:
+rotateY(0deg)
+translateX(0px);
+opacity:1;
 }
 }
 
@@ -46,8 +169,6 @@ box-shadow:
 0 0 40px rgba(255,0,128,0.5),
 0 0 80px rgba(255,0,128,0.3);
 
-border-left:10px solid #ff99cc;
-
 position:relative;
 overflow:hidden;
 }
@@ -61,7 +182,6 @@ top:0;
 left:-120%;
 width:100%;
 height:100%;
-
 background:
 linear-gradient(
 90deg,
@@ -69,9 +189,7 @@ transparent,
 rgba(255,255,255,0.3),
 transparent
 );
-
 transform:skewX(-25deg);
-
 animation:shine 4s infinite;
 }
 
@@ -84,73 +202,473 @@ left:120%;
 }
 }
 
-/* PAGE EFFECT */
+/* FRONT TITLE */
 
-.page{
-transform-origin:left center;
-transform-style:preserve-3d;
-transition:1s;
+.front-title{
+font-size:62px;
+font-family:'Dancing Script',cursive;
+color:white;
+text-shadow:
+0 0 10px #fff,
+0 0 20px #ff4da6,
+0 0 40px #ff0080;
+animation:heartbeat 1s infinite;
 }
 
-/* PAGE FLIP */
-
-.page.active{
-animation:flipPage 1s ease;
-}
-
-@keyframes flipPage{
+@keyframes heartbeat{
 0%{
-transform:
-rotateY(-90deg)
-translateX(-30px);
-opacity:0;
+transform:scale(1);
+}
+25%{
+transform:scale(1.1);
+}
+50%{
+transform:scale(1);
+}
+75%{
+transform:scale(1.1);
 }
 100%{
-transform:
-rotateY(0deg)
-translateX(0px);
+transform:scale(1);
+}
+}
+
+/* FRONT MESSAGE */
+
+.front-message{
+margin-top:30px;
+font-size:22px;
+line-height:2;
+color:white;
+}
+
+/* BIG HEART */
+
+.front-heart{
+margin-top:30px;
+font-size:80px;
+animation:heartBeatBig 1s infinite;
+filter:drop-shadow(0 0 20px #ff4da6);
+}
+
+@keyframes heartBeatBig{
+0%{
+transform:scale(1);
+}
+25%{
+transform:scale(1.2);
+}
+50%{
+transform:scale(1);
+}
+75%{
+transform:scale(1.2);
+}
+100%{
+transform:scale(1);
+}
+}
+
+/* IMAGE */
+
+.page img{
+width:100%;
+height:420px;
+object-fit:cover;
+border-radius:20px;
+border:4px solid white;
+box-shadow:0 0 25px pink;
+margin-top:10px;
+}
+
+/* TITLE */
+
+.title{
+margin-top:18px;
+font-size:42px;
+font-family:'Dancing Script',cursive;
+color:white;
+text-shadow:
+0 0 10px #fff,
+0 0 20px #ff4da6,
+0 0 40px #ff0080;
+}
+
+.title span{
+display:inline-block;
+animation:beat 1s infinite;
+}
+
+@keyframes beat{
+0%{transform:scale(1);}
+25%{transform:scale(1.3);}
+50%{transform:scale(1);}
+75%{transform:scale(1.3);}
+100%{transform:scale(1);}
+}
+
+/* MESSAGE */
+
+.message{
+margin-top:15px;
+font-size:18px;
+line-height:1.8;
+color:white;
+}
+
+/* BUTTONS */
+
+.buttons{
+position:absolute;
+bottom:20px;
+width:100%;
+display:flex;
+justify-content:space-between;
+padding:0 20px;
+z-index:50;
+}
+
+button{
+padding:12px 22px;
+border:none;
+border-radius:50px;
+background:linear-gradient(45deg,#ff0080,#ff4da6);
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 0 20px rgba(255,0,128,0.5);
+transition:0.4s;
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+/* HEARTS */
+
+.heart{
+position:absolute;
+bottom:-50px;
+color:#ff006e;
+animation:float linear infinite;
+opacity:0.8;
+}
+
+@keyframes float{
+0%{
+transform:translateY(0);
+opacity:0;
+}
+50%{
 opacity:1;
 }
+100%{
+transform:translateY(-110vh);
+opacity:0;
+}
 }
 
-/* BOOK EDGE */
+/* FLOWERS */
 
-.book::before{
-content:"";
+.flower{
 position:absolute;
-left:-8px;
-top:0;
-width:12px;
-height:100%;
-
-background:
-linear-gradient(
-to bottom,
-#ff99cc,
-#ff0080,
-#7b2cbf
-);
-
-border-radius:20px;
-
-box-shadow:
-0 0 25px #ff4da6;
+top:-50px;
+animation:fall linear infinite;
 }
 
-/* SHADOW */
+@keyframes fall{
+0%{
+transform:translateY(-10vh) rotate(0deg);
+}
+100%{
+transform:translateY(110vh) rotate(360deg);
+}
+}
 
-.book::after{
-content:"";
+/* FIREWORKS */
+
+.firework{
 position:absolute;
-bottom:-30px;
-left:10%;
-width:80%;
-height:40px;
-
-background:rgba(0,0,0,0.4);
-
-filter:blur(25px);
-
+width:10px;
+height:10px;
 border-radius:50%;
-z-index:-1;
+animation:explode 1s ease-out infinite;
+opacity:0;
 }
+
+@keyframes explode{
+0%{
+transform:scale(0);
+opacity:1;
+}
+100%{
+transform:scale(12);
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="book">
+
+<!-- FRONT PAGE -->
+
+<div class="page active">
+
+<div class="front-page">
+
+<h1 class="front-title">
+Gunesh ❤️ Pooja
+</h1>
+
+<div class="front-message">
+
+🌸 “Some souls are meant to meet,
+no matter how far they are.” 🌸
+
+<br><br>
+
+💖 “You are not just my love,
+you are my peace,
+my smile,
+my happiness,
+and my forever.” 💖
+
+<br><br>
+
+✨ “In every lifetime,
+I would still choose YOU.” ✨
+
+</div>
+
+<div class="front-heart">
+❤️
+</div>
+
+</div>
+
+</div>
+
+<!-- PAGE 2 -->
+
+<div class="page">
+
+<img src="d2f6d002-8ccf-48d8-a882-192618f10d14.jpeg">
+
+<h1 class="title">
+First <span>❤️</span> Meeting
+</h1>
+
+<div class="message">
+🌸 That first glance changed everything.<br>
+My heart quietly chose you forever 💖
+</div>
+
+</div>
+
+<!-- PAGE 3 -->
+
+<div class="page">
+
+<img src="IMG_0392.jpeg">
+
+<h1 class="title">
+Engagement <span>💍</span>
+</h1>
+
+<div class="message">
+✨ The day we promised each other<br>
+a lifetime full of love ❤️
+</div>
+
+</div>
+
+<!-- PAGE 4 -->
+
+<div class="page">
+
+<img src="IMG_0504.jpeg">
+
+<h1 class="title">
+Together <span>🌸</span>
+</h1>
+
+<div class="message">
+💞 Every moment with you feels magical.<br>
+You are my happiest place ✨
+</div>
+
+</div>
+
+<!-- PAGE 5 -->
+
+<div class="page">
+
+<img src="IMG_7345.jpeg">
+
+<h1 class="title">
+Forever <span>❤️</span> Together
+</h1>
+
+<div class="message">
+🌹 No matter where life takes us,<br>
+my heart will always belong to you 💖
+</div>
+
+</div>
+
+<!-- MUSIC -->
+
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mp3">
+</audio>
+
+<!-- BUTTONS -->
+
+<div class="buttons">
+
+<button onclick="prevPage()">⬅ Prev</button>
+
+<button onclick="nextPage()">Next ➡</button>
+
+</div>
+
+</div>
+
+<script>
+
+/* MUSIC */
+
+document.body.addEventListener("click",()=>{
+
+document.getElementById("music").play().catch(()=>{});
+
+},{once:true});
+
+/* PAGE SYSTEM */
+
+let pages=document.querySelectorAll(".page");
+
+let current=0;
+
+function showPage(index){
+
+pages.forEach(page=>{
+
+page.classList.remove("active");
+
+});
+
+pages[index].classList.add("active");
+
+createFireworks();
+
+}
+
+function nextPage(){
+
+current++;
+
+if(current>=pages.length){
+
+current=0;
+
+}
+
+showPage(current);
+
+}
+
+function prevPage(){
+
+current--;
+
+if(current<0){
+
+current=pages.length-1;
+
+}
+
+showPage(current);
+
+}
+
+/* HEARTS */
+
+for(let i=0;i<35;i++){
+
+let heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(15+Math.random()*30)+"px";
+
+heart.style.animationDuration=(5+Math.random()*5)+"s";
+
+document.body.appendChild(heart);
+
+}
+
+/* FLOWERS */
+
+let flowers=["🌸","🌺","🌷","🌹","💮"];
+
+for(let i=0;i<60;i++){
+
+let flower=document.createElement("div");
+
+flower.classList.add("flower");
+
+flower.innerHTML=flowers[Math.floor(Math.random()*flowers.length)];
+
+flower.style.left=Math.random()*100+"vw";
+
+flower.style.fontSize=(18+Math.random()*20)+"px";
+
+flower.style.animationDuration=(5+Math.random()*10)+"s";
+
+document.body.appendChild(flower);
+
+}
+
+/* FIREWORKS */
+
+function createFireworks(){
+
+for(let i=0;i<30;i++){
+
+let firework=document.createElement("div");
+
+firework.classList.add("firework");
+
+firework.style.left=Math.random()*100+"vw";
+
+firework.style.top=Math.random()*100+"vh";
+
+firework.style.background=
+`hsl(${Math.random()*360},100%,70%)`;
+
+document.body.appendChild(firework);
+
+setTimeout(()=>{
+
+firework.remove();
+
+},2000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
