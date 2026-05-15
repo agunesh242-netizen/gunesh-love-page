@@ -17,8 +17,6 @@ box-sizing:border-box;
 font-family:'Poppins',sans-serif;
 }
 
-/* BODY */
-
 body{
 
 height:100vh;
@@ -32,17 +30,13 @@ justify-content:center;
 align-items:center;
 
 background:
-linear-gradient(135deg,#2b0033,#5c005c,#1a001f);
-
-perspective:4000px;
-
-transform-style:preserve-3d;
+linear-gradient(135deg,#2a002f,#5b005b,#1a001f);
 
 position:relative;
 
 }
 
-/* BACKGROUND GLOW */
+/* SOFT GLOW */
 
 body::before{
 
@@ -50,8 +44,8 @@ content:"";
 
 position:absolute;
 
-width:700px;
-height:700px;
+width:500px;
+height:500px;
 
 background:rgba(255,0,128,0.18);
 
@@ -59,18 +53,18 @@ border-radius:50%;
 
 filter:blur(120px);
 
-animation:bgMove 8s infinite alternate;
+animation:bgMove 7s infinite alternate;
 
 }
 
 @keyframes bgMove{
 
 0%{
-transform:translate(-120px,-60px);
+transform:translate(-100px,-50px);
 }
 
 100%{
-transform:translate(120px,60px);
+transform:translate(100px,50px);
 }
 
 }
@@ -81,42 +75,31 @@ transform:translate(120px,60px);
 
 position:relative;
 
-width:400px;
+width:390px;
 height:760px;
 
-transform-style:preserve-3d;
+border-radius:35px;
 
-transform:
-rotateY(-18deg)
-rotateX(5deg);
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,0.15),
+rgba(255,255,255,0.08)
+);
 
-animation:bookRotate 7s ease-in-out infinite;
+backdrop-filter:blur(18px);
 
-}
+overflow:hidden;
 
-/* REAL 3D ROTATION */
+box-shadow:
+0 0 40px rgba(255,0,128,0.35),
+0 20px 50px rgba(0,0,0,0.4);
 
-@keyframes bookRotate{
-
-0%,100%{
-
-transform:
-rotateY(-18deg)
-rotateX(5deg);
-
-}
-
-50%{
-
-transform:
-rotateY(18deg)
-rotateX(-5deg);
+border:1px solid rgba(255,255,255,0.18);
 
 }
 
-}
-
-/* BOOK EDGE */
+/* SPINE */
 
 .book::before{
 
@@ -124,51 +107,25 @@ content:"";
 
 position:absolute;
 
-left:-12px;
-top:10px;
+left:0;
 
-width:15px;
-height:96%;
+top:0;
+
+width:14px;
+height:100%;
 
 background:
 linear-gradient(
 to bottom,
-#ff99cc,
+#ffb3d9,
 #ff0080,
 #7b2cbf
 );
 
-border-radius:20px;
-
-transform:
-rotateY(90deg);
-
 box-shadow:
-0 0 25px #ff4da6;
+0 0 25px rgba(255,0,128,0.8);
 
-}
-
-/* SHADOW */
-
-.book::after{
-
-content:"";
-
-position:absolute;
-
-bottom:-40px;
-left:8%;
-
-width:85%;
-height:45px;
-
-background:rgba(0,0,0,0.45);
-
-filter:blur(30px);
-
-border-radius:50%;
-
-z-index:-1;
+z-index:10;
 
 }
 
@@ -181,85 +138,55 @@ position:absolute;
 width:100%;
 height:100%;
 
+padding:22px;
+
 display:none;
 
 flex-direction:column;
 
 align-items:center;
 
-padding:18px;
+text-align:center;
 
-border-radius:28px;
-
-background:
-rgba(255,255,255,0.12);
-
-backdrop-filter:blur(18px);
-
-box-shadow:
-0 0 35px rgba(255,255,255,0.15);
-
-overflow:hidden;
-
-transform-style:preserve-3d;
-
-backface-visibility:hidden;
+animation:pageFlip 0.9s ease;
 
 }
-
-/* ACTIVE PAGE */
 
 .page.active{
 
 display:flex;
 
-animation:realFlip 1s ease;
-
 }
 
-/* PAGE FLIP */
-
-@keyframes realFlip{
+@keyframes pageFlip{
 
 0%{
 
-transform:
-rotateY(-120deg)
-translateX(-120px);
-
 opacity:0;
+
+transform:
+translateX(80px)
+rotateY(-15deg);
 
 }
 
 100%{
 
-transform:
-rotateY(0deg)
-translateX(0px);
-
 opacity:1;
 
-}
+transform:
+translateX(0px)
+rotateY(0deg);
 
 }
 
-/* FRONT PAGE */
+}
 
-.front-page{
+/* COVER PAGE */
 
-width:100%;
-height:100%;
+.cover{
 
-border-radius:25px;
-
-display:flex;
-flex-direction:column;
 justify-content:center;
-align-items:center;
-
-text-align:center;
-
-padding:30px;
 
 background:
 linear-gradient(
@@ -269,59 +196,9 @@ linear-gradient(
 #240046
 );
 
-position:relative;
-
-overflow:hidden;
-
-box-shadow:
-0 0 40px rgba(255,0,128,0.5),
-0 0 80px rgba(255,0,128,0.25);
-
 }
 
-/* SHINE */
-
-.front-page::before{
-
-content:"";
-
-position:absolute;
-
-top:0;
-left:-120%;
-
-width:100%;
-height:100%;
-
-background:
-linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,0.3),
-transparent
-);
-
-transform:skewX(-25deg);
-
-animation:shine 4s infinite;
-
-}
-
-@keyframes shine{
-
-0%{
-left:-120%;
-}
-
-100%{
-left:120%;
-}
-
-}
-
-/* TITLE */
-
-.front-title{
+.cover h1{
 
 font-size:62px;
 
@@ -330,9 +207,8 @@ font-family:'Dancing Script',cursive;
 color:white;
 
 text-shadow:
-0 0 10px #fff,
-0 0 20px #ff4da6,
-0 0 40px #ff0080;
+0 0 10px white,
+0 0 25px #ff4da6;
 
 animation:heartbeat 1s infinite;
 
@@ -362,9 +238,7 @@ transform:scale(1);
 
 }
 
-/* FRONT MESSAGE */
-
-.front-message{
+.cover p{
 
 margin-top:30px;
 
@@ -376,51 +250,13 @@ color:white;
 
 }
 
-/* BIG HEART */
-
-.front-heart{
-
-margin-top:30px;
-
-font-size:80px;
-
-animation:heartBig 1s infinite;
-
-filter:drop-shadow(0 0 20px #ff4da6);
-
-}
-
-@keyframes heartBig{
-
-0%{
-transform:scale(1);
-}
-
-25%{
-transform:scale(1.2);
-}
-
-50%{
-transform:scale(1);
-}
-
-75%{
-transform:scale(1.2);
-}
-
-100%{
-transform:scale(1);
-}
-
-}
-
-/* IMAGES */
+/* IMAGE */
 
 .page img{
 
 width:100%;
 
-height:460px;
+height:430px;
 
 object-fit:cover;
 
@@ -428,23 +264,20 @@ object-position:center;
 
 border-radius:25px;
 
-border:5px solid rgba(255,255,255,0.9);
+border:4px solid rgba(255,255,255,0.9);
 
 box-shadow:
-0 0 30px rgba(255,105,180,0.7),
-0 0 60px rgba(255,20,147,0.4);
+0 0 30px rgba(255,105,180,0.6);
 
-background:white;
-
-margin-top:5px;
+margin-top:20px;
 
 }
 
-/* PAGE TITLES */
+/* TITLE */
 
 .title{
 
-margin-top:20px;
+margin-top:22px;
 
 font-size:48px;
 
@@ -453,9 +286,8 @@ font-family:'Dancing Script',cursive;
 color:white;
 
 text-shadow:
-0 0 10px #fff,
-0 0 20px #ff4da6,
-0 0 40px #ff0080;
+0 0 10px white,
+0 0 20px #ff4da6;
 
 }
 
@@ -463,17 +295,15 @@ text-shadow:
 
 .message{
 
-margin-top:15px;
+margin-top:18px;
 
 font-size:20px;
 
 line-height:1.8;
 
-padding:0 10px;
-
-text-align:center;
-
 color:white;
+
+padding:0 8px;
 
 }
 
@@ -483,7 +313,7 @@ color:white;
 
 position:absolute;
 
-bottom:18px;
+bottom:20px;
 
 width:100%;
 
@@ -491,7 +321,7 @@ display:flex;
 
 justify-content:space-between;
 
-padding:0 18px;
+padding:0 20px;
 
 z-index:100;
 
@@ -499,7 +329,7 @@ z-index:100;
 
 button{
 
-padding:14px 24px;
+padding:14px 26px;
 
 border:none;
 
@@ -523,33 +353,51 @@ cursor:pointer;
 box-shadow:
 0 0 20px rgba(255,0,128,0.5);
 
-transition:0.4s;
+transition:0.3s;
 
 }
 
 button:hover{
 
-transform:scale(1.08);
+transform:scale(1.06);
 
 }
 
-/* HEARTS */
+/* AUDIO */
+
+.audioBox{
+
+position:absolute;
+
+top:10px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:85%;
+
+z-index:200;
+
+}
+
+/* SOFT HEARTS */
 
 .heart{
 
 position:absolute;
 
-bottom:-50px;
+bottom:-30px;
 
-color:#ff006e;
+font-size:18px;
 
-animation:float linear infinite;
+opacity:0.35;
 
-opacity:0.8;
+animation:floatHeart linear infinite;
 
 }
 
-@keyframes float{
+@keyframes floatHeart{
 
 0%{
 transform:translateY(0);
@@ -557,66 +405,11 @@ opacity:0;
 }
 
 50%{
-opacity:1;
+opacity:0.35;
 }
 
 100%{
 transform:translateY(-110vh);
-opacity:0;
-}
-
-}
-
-/* FLOWERS */
-
-.flower{
-
-position:absolute;
-
-top:-50px;
-
-animation:fall linear infinite;
-
-}
-
-@keyframes fall{
-
-0%{
-transform:translateY(-10vh) rotate(0deg);
-}
-
-100%{
-transform:translateY(110vh) rotate(360deg);
-}
-
-}
-
-/* FIREWORKS */
-
-.firework{
-
-position:absolute;
-
-width:10px;
-height:10px;
-
-border-radius:50%;
-
-animation:explode 1s ease-out infinite;
-
-opacity:0;
-
-}
-
-@keyframes explode{
-
-0%{
-transform:scale(0);
-opacity:1;
-}
-
-100%{
-transform:scale(12);
 opacity:0;
 }
 
@@ -629,44 +422,47 @@ opacity:0;
 
 <div class="book">
 
-<!-- FRONT PAGE -->
+<!-- MUSIC -->
 
-<div class="page active">
+<div class="audioBox">
 
-<div class="front-page">
+<audio id="music" controls loop style="width:100%;">
 
-<h1 class="front-title">
+<source src="music.mp3" type="audio/mp3">
+
+</audio>
+
+</div>
+
+<!-- COVER -->
+
+<div class="page cover active">
+
+<h1>
 Gunesh ❤️ Pooja
 </h1>
 
-<div class="front-message">
+<p>
 
-🌸 “Some souls are meant to meet,
-no matter how far they are.” 🌸
+🌸 Some souls are destined to meet forever 🌸
 
 <br><br>
 
-💖 “You are my peace,
+💖 You are my peace,
 my smile,
 my happiness,
-and my forever.” 💖
+and my forever 💖
 
 <br><br>
 
-✨ “In every lifetime,
-I would still choose YOU.” ✨
+✨ Every love story is beautiful,
+but ours is my favorite ✨
+
+</p>
 
 </div>
 
-<div class="front-heart">
-❤️
-</div>
-
-</div>
-
-</div>
-
-<!-- PAGE 2 -->
+<!-- PAGE 1 -->
 
 <div class="page">
 
@@ -683,7 +479,7 @@ my heart found its favorite person 💖
 
 </div>
 
-<!-- PAGE 3 -->
+<!-- PAGE 2 -->
 
 <div class="page">
 
@@ -700,7 +496,7 @@ a lifetime full of love ❤️
 
 </div>
 
-<!-- PAGE 4 -->
+<!-- PAGE 3 -->
 
 <div class="page">
 
@@ -717,7 +513,7 @@ when I’m with you 💖
 
 </div>
 
-<!-- PAGE 5 -->
+<!-- PAGE 4 -->
 
 <div class="page">
 
@@ -734,22 +530,6 @@ my heart will always belong to you 💖
 
 </div>
 
-<!-- MUSIC -->
-
-<audio id="music" controls loop
-style="
-position:absolute;
-top:10px;
-left:50%;
-transform:translateX(-50%);
-width:85%;
-z-index:200;
-">
-
-<source src="music.mp3" type="audio/mp3">
-
-</audio>
-
 <!-- BUTTONS -->
 
 <div class="buttons">
@@ -764,7 +544,7 @@ z-index:200;
 
 <script>
 
-/* MUSIC */
+/* AUTO MUSIC */
 
 document.body.addEventListener("click",()=>{
 
@@ -787,8 +567,6 @@ page.classList.remove("active");
 });
 
 pages[index].classList.add("active");
-
-createFireworks();
 
 }
 
@@ -820,9 +598,9 @@ showPage(current);
 
 }
 
-/* HEARTS */
+/* SOFT HEARTS */
 
-for(let i=0;i<35;i++){
+for(let i=0;i<18;i++){
 
 let heart=document.createElement("div");
 
@@ -832,67 +610,10 @@ heart.innerHTML="❤️";
 
 heart.style.left=Math.random()*100+"vw";
 
-heart.style.fontSize=(15+Math.random()*30)+"px";
-
-heart.style.animationDuration=(5+Math.random()*5)+"s";
+heart.style.animationDuration=
+(6+Math.random()*6)+"s";
 
 document.body.appendChild(heart);
-
-}
-
-/* FLOWERS */
-
-let flowers=["🌸","🌺","🌷","🌹","💮"];
-
-for(let i=0;i<60;i++){
-
-let flower=document.createElement("div");
-
-flower.classList.add("flower");
-
-flower.innerHTML=
-flowers[Math.floor(Math.random()*flowers.length)];
-
-flower.style.left=Math.random()*100+"vw";
-
-flower.style.fontSize=
-(18+Math.random()*20)+"px";
-
-flower.style.animationDuration=
-(5+Math.random()*10)+"s";
-
-document.body.appendChild(flower);
-
-}
-
-/* FIREWORKS */
-
-function createFireworks(){
-
-for(let i=0;i<30;i++){
-
-let firework=document.createElement("div");
-
-firework.classList.add("firework");
-
-firework.style.left=
-Math.random()*100+"vw";
-
-firework.style.top=
-Math.random()*100+"vh";
-
-firework.style.background=
-`hsl(${Math.random()*360},100%,70%)`;
-
-document.body.appendChild(firework);
-
-setTimeout(()=>{
-
-firework.remove();
-
-},2000);
-
-}
 
 }
 
