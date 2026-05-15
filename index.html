@@ -18,66 +18,44 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-
 height:100vh;
-
 overflow:hidden;
-
 display:flex;
-
 justify-content:center;
-
 align-items:center;
-
 background:
 linear-gradient(135deg,#2a002f,#5b005b,#1a001f);
-
 position:relative;
-
 }
 
-/* SOFT GLOW */
+/* Background Glow */
 
 body::before{
-
 content:"";
-
 position:absolute;
-
 width:500px;
 height:500px;
-
 background:rgba(255,0,128,0.18);
-
 border-radius:50%;
-
 filter:blur(120px);
-
 animation:bgMove 7s infinite alternate;
-
 }
 
 @keyframes bgMove{
-
 0%{
 transform:translate(-100px,-50px);
 }
-
 100%{
 transform:translate(100px,50px);
 }
-
 }
 
-/* BOOK */
+/* Book */
 
 .book{
-
 position:relative;
-
 width:390px;
 height:760px;
-
 border-radius:35px;
 
 background:
@@ -96,24 +74,17 @@ box-shadow:
 0 20px 50px rgba(0,0,0,0.4);
 
 border:1px solid rgba(255,255,255,0.18);
-
 }
 
-/* SPINE */
+/* Book Spine */
 
 .book::before{
-
 content:"";
-
 position:absolute;
-
 left:0;
-
 top:0;
-
 width:14px;
 height:100%;
-
 background:
 linear-gradient(
 to bottom,
@@ -126,66 +97,44 @@ box-shadow:
 0 0 25px rgba(255,0,128,0.8);
 
 z-index:10;
-
 }
 
-/* PAGE */
+/* Pages */
 
 .page{
-
 position:absolute;
-
 width:100%;
 height:100%;
-
 padding:22px;
-
 display:none;
-
 flex-direction:column;
-
 align-items:center;
-
 text-align:center;
-
 animation:pageFlip 0.9s ease;
-
 }
 
 .page.active{
-
 display:flex;
-
 }
 
 @keyframes pageFlip{
-
 0%{
-
 opacity:0;
-
 transform:
 translateX(80px)
 rotateY(-15deg);
-
 }
-
 100%{
-
 opacity:1;
-
 transform:
 translateX(0px)
 rotateY(0deg);
-
+}
 }
 
-}
-
-/* COVER PAGE */
+/* Cover */
 
 .cover{
-
 justify-content:center;
 
 background:
@@ -195,15 +144,11 @@ linear-gradient(
 #7b2cbf,
 #240046
 );
-
 }
 
 .cover h1{
-
 font-size:62px;
-
 font-family:'Dancing Script',cursive;
-
 color:white;
 
 text-shadow:
@@ -211,55 +156,29 @@ text-shadow:
 0 0 25px #ff4da6;
 
 animation:heartbeat 1s infinite;
-
 }
 
 @keyframes heartbeat{
-
-0%{
-transform:scale(1);
-}
-
-25%{
-transform:scale(1.08);
-}
-
-50%{
-transform:scale(1);
-}
-
-75%{
-transform:scale(1.08);
-}
-
-100%{
-transform:scale(1);
-}
-
+0%{transform:scale(1);}
+25%{transform:scale(1.08);}
+50%{transform:scale(1);}
+75%{transform:scale(1.08);}
+100%{transform:scale(1);}
 }
 
 .cover p{
-
 margin-top:30px;
-
 font-size:22px;
-
 line-height:2;
-
 color:white;
-
 }
 
-/* IMAGE */
+/* Image */
 
 .page img{
-
 width:100%;
-
 height:430px;
-
 object-fit:cover;
-
 object-position:center;
 
 border-radius:25px;
@@ -270,149 +189,64 @@ box-shadow:
 0 0 30px rgba(255,105,180,0.6);
 
 margin-top:20px;
-
 }
 
-/* TITLE */
+/* Title */
 
 .title{
-
 margin-top:22px;
-
 font-size:48px;
-
 font-family:'Dancing Script',cursive;
-
 color:white;
 
 text-shadow:
 0 0 10px white,
 0 0 20px #ff4da6;
-
 }
 
-/* MESSAGE */
+/* Message */
 
 .message{
-
 margin-top:18px;
-
 font-size:20px;
-
 line-height:1.8;
-
 color:white;
-
 padding:0 8px;
-
 }
 
-/* BUTTONS */
-
-.buttons{
-
-position:absolute;
-
-bottom:20px;
-
-width:100%;
-
-display:flex;
-
-justify-content:space-between;
-
-padding:0 20px;
-
-z-index:100;
-
-}
-
-button{
-
-padding:14px 26px;
-
-border:none;
-
-border-radius:50px;
-
-background:
-linear-gradient(
-45deg,
-#ff0080,
-#ff4da6
-);
-
-color:white;
-
-font-size:17px;
-
-font-weight:bold;
-
-cursor:pointer;
-
-box-shadow:
-0 0 20px rgba(255,0,128,0.5);
-
-transition:0.3s;
-
-}
-
-button:hover{
-
-transform:scale(1.06);
-
-}
-
-/* AUDIO */
+/* Audio */
 
 .audioBox{
-
 position:absolute;
-
 top:10px;
-
 left:50%;
-
 transform:translateX(-50%);
-
 width:85%;
-
 z-index:200;
-
 }
 
-/* SOFT HEARTS */
+/* Hearts */
 
 .heart{
-
 position:absolute;
-
 bottom:-30px;
-
 font-size:18px;
-
 opacity:0.35;
-
 animation:floatHeart linear infinite;
-
 }
 
 @keyframes floatHeart{
-
 0%{
 transform:translateY(0);
 opacity:0;
 }
-
 50%{
 opacity:0.35;
 }
-
 100%{
 transform:translateY(-110vh);
 opacity:0;
 }
-
 }
 
 </style>
@@ -434,7 +268,7 @@ opacity:0;
 
 </div>
 
-<!-- COVER -->
+<!-- COVER PAGE -->
 
 <div class="page cover active">
 
@@ -483,7 +317,7 @@ my heart found its favorite person 💖
 
 <div class="page">
 
-<img src="IMG_0392.jpeg">
+<img src="IMG_7345.jpeg">
 
 <h1 class="title">
 Engagement 💍
@@ -500,7 +334,7 @@ a lifetime full of love ❤️
 
 <div class="page">
 
-<img src="IMG_0504.jpeg">
+<img src="IMG_0392.jpeg">
 
 <h1 class="title">
 Honeymoon 🌸
@@ -517,7 +351,7 @@ when I’m with you 💖
 
 <div class="page">
 
-<img src="IMG_7345.jpeg">
+<img src="IMG_0504.jpeg">
 
 <h1 class="title">
 Forever ❤️ Together
@@ -527,16 +361,6 @@ Forever ❤️ Together
 🌹 No matter where life takes us,<br>
 my heart will always belong to you 💖
 </div>
-
-</div>
-
-<!-- BUTTONS -->
-
-<div class="buttons">
-
-<button onclick="prevPage()">⬅ Prev</button>
-
-<button onclick="nextPage()">Next ➡</button>
 
 </div>
 
@@ -584,21 +408,15 @@ showPage(current);
 
 }
 
-function prevPage(){
+/* AUTO PAGE CHANGE */
 
-current--;
+setInterval(()=>{
 
-if(current<0){
+nextPage();
 
-current=pages.length-1;
+},5000);
 
-}
-
-showPage(current);
-
-}
-
-/* SOFT HEARTS */
+/* FLOATING HEARTS */
 
 for(let i=0;i<18;i++){
 
