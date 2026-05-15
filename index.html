@@ -97,13 +97,15 @@ overflow:hidden;
 border-radius:25px;
 border:4px solid white;
 box-shadow:0 0 30px pink;
+background:black;
 }
 
 .slide{
 position:absolute;
 width:100%;
 height:100%;
-object-fit:cover;
+object-fit:contain;
+background:black;
 opacity:0;
 animation:slideShow 12s infinite;
 }
@@ -185,7 +187,7 @@ filter:drop-shadow(0 0 20px #ff99cc);
 }
 }
 
-/* Typing Love Letter */
+/* Typing Message */
 
 .typing{
 margin-top:18px;
@@ -196,7 +198,7 @@ min-height:120px;
 padding:10px;
 }
 
-/* Gift Button */
+/* Button */
 
 .gift-btn{
 margin-top:20px;
@@ -360,7 +362,7 @@ transform:translateY(-20px);
 
 <div class="card">
 
-<!-- SLIDESHOW -->
+<!-- PHOTO SLIDESHOW -->
 
 <div class="slideshow">
 
@@ -409,11 +411,21 @@ belongs only to you ❤️<br><br>
 
 <!-- MUSIC -->
 
-<audio autoplay loop>
+<audio id="bgMusic" loop>
 <source src="music.mp3" type="audio/mp3">
 </audio>
 
 <script>
+
+/* Start Music on First Tap */
+
+document.body.addEventListener("click", function () {
+
+const music = document.getElementById("bgMusic");
+
+music.play();
+
+}, { once:true });
 
 /* Typing Effect */
 
