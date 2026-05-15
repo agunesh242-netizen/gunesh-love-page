@@ -17,31 +17,50 @@ box-sizing:border-box;
 font-family:'Poppins',sans-serif;
 }
 
+/* BODY */
+
 body{
+
 height:100vh;
+
 overflow:hidden;
+
 display:flex;
+
 justify-content:center;
+
 align-items:center;
 
 background:
 linear-gradient(135deg,#2b0033,#5c005c,#1a001f);
 
-perspective:2500px;
+perspective:4000px;
+
+transform-style:preserve-3d;
+
 position:relative;
+
 }
 
 /* BACKGROUND GLOW */
 
 body::before{
+
 content:"";
+
 position:absolute;
+
 width:700px;
 height:700px;
+
 background:rgba(255,0,128,0.18);
+
 border-radius:50%;
+
 filter:blur(120px);
+
 animation:bgMove 8s infinite alternate;
+
 }
 
 @keyframes bgMove{
@@ -67,27 +86,31 @@ height:760px;
 
 transform-style:preserve-3d;
 
-animation:bookMove 6s ease-in-out infinite;
+transform:
+rotateY(-18deg)
+rotateX(5deg);
+
+animation:bookRotate 7s ease-in-out infinite;
 
 }
 
-/* BOOK MOVEMENT */
+/* REAL 3D ROTATION */
 
-@keyframes bookMove{
+@keyframes bookRotate{
 
 0%,100%{
 
 transform:
-rotateY(-12deg)
-rotateX(2deg);
+rotateY(-18deg)
+rotateX(5deg);
 
 }
 
 50%{
 
 transform:
-rotateY(12deg)
-rotateX(-2deg);
+rotateY(18deg)
+rotateX(-5deg);
 
 }
 
@@ -146,6 +169,7 @@ filter:blur(30px);
 border-radius:50%;
 
 z-index:-1;
+
 }
 
 /* PAGE */
@@ -177,7 +201,9 @@ box-shadow:
 
 overflow:hidden;
 
-transform-origin:left center;
+transform-style:preserve-3d;
+
+backface-visibility:hidden;
 
 }
 
@@ -187,19 +213,19 @@ transform-origin:left center;
 
 display:flex;
 
-animation:pageFlip 1s ease;
+animation:realFlip 1s ease;
 
 }
 
 /* PAGE FLIP */
 
-@keyframes pageFlip{
+@keyframes realFlip{
 
 0%{
 
 transform:
-rotateY(-100deg)
-translateX(-80px);
+rotateY(-120deg)
+translateX(-120px);
 
 opacity:0;
 
@@ -253,7 +279,7 @@ box-shadow:
 
 }
 
-/* SHINE EFFECT */
+/* SHINE */
 
 .front-page::before{
 
@@ -293,7 +319,7 @@ left:120%;
 
 }
 
-/* FRONT TITLE */
+/* TITLE */
 
 .front-title{
 
@@ -311,8 +337,6 @@ text-shadow:
 animation:heartbeat 1s infinite;
 
 }
-
-/* HEARTBEAT */
 
 @keyframes heartbeat{
 
@@ -416,7 +440,7 @@ margin-top:5px;
 
 }
 
-/* TITLES */
+/* PAGE TITLES */
 
 .title{
 
@@ -509,7 +533,7 @@ transform:scale(1.08);
 
 }
 
-/* FLOATING HEARTS */
+/* HEARTS */
 
 .heart{
 
@@ -622,8 +646,7 @@ no matter how far they are.” 🌸
 
 <br><br>
 
-💖 “You are not just my love,
-you are my peace,
+💖 “You are my peace,
 my smile,
 my happiness,
 and my forever.” 💖
@@ -654,8 +677,8 @@ First ❤️ Meeting
 </h1>
 
 <div class="message">
-🌸 That first glance changed everything.<br>
-My heart quietly chose you forever 💖
+🌸 The day our eyes met,<br>
+my heart found its favorite person 💖
 </div>
 
 </div>
@@ -713,14 +736,14 @@ my heart will always belong to you 💖
 
 <!-- MUSIC -->
 
-<audio id="music" loop controls
+<audio id="music" controls loop
 style="
 position:absolute;
 top:10px;
 left:50%;
 transform:translateX(-50%);
-z-index:200;
 width:85%;
+z-index:200;
 ">
 
 <source src="music.mp3" type="audio/mp3">
@@ -749,7 +772,7 @@ document.getElementById("music").play().catch(()=>{});
 
 },{once:true});
 
-/* PAGE SYSTEM */
+/* PAGES */
 
 let pages=document.querySelectorAll(".page");
 
